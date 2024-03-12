@@ -7,7 +7,9 @@ pip install flask // Version: 3.0.0
 pip install flask_cors
 pip install pymysql
 pip install mysql-connector-python
+pip install open_clip_torch
 ```
+search()函数中的Python解释器需要换为自己电脑的路径
 2. 启动服务
 ```
 from flask import Flask
