@@ -1,14 +1,13 @@
 import json
 from unicodedata import name
-from flask import Flask, jsonify
+from flask import Flask, jsonify,request
 # 解决跨域问题
 from flask_cors import CORS
 import mysql.connector
 # 创建Flask实例
 app = Flask(__name__)
 # 解决跨域
-cors = CORS()
-cors.init_app(app=app, resources={r"/api/*": {"origins": "*"}})
+CORS(app, resources={r'/*': {'origins': '*'}}, supports_credentials=True)
 
 # 连接数据库
 # 创建MySQL连接
@@ -49,7 +48,13 @@ def get_data_list():
   except Exception as e:
     return jsonify({'code': 10001, 'message': str(e)})
 
+@app.route('/api/sendEvent',methods=['POST'])
+def textEEPredict():
+  print(request.json)
+  print('loading model')
+  return jsonify({'code': 200, 'message': '222'})
+  
 if __name__ == '__main__':
   # 启动服务 默认开在5000端口
 
-  app.run()
+  app.run(debug=True)
