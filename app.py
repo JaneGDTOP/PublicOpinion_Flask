@@ -1,8 +1,9 @@
 import json
 from unicodedata import name
-from flask import Flask, jsonify,request
+from flask import Flask, request, jsonify
 # 解决跨域问题
 from flask_cors import CORS
+import subprocess
 import mysql.connector
 # 创建Flask实例
 app = Flask(__name__)
@@ -25,6 +26,35 @@ def index():
     "msg": "success",
     "data": "welcome to use flask."
   }
+
+# 搜索接口
+@app.route('/api/search', methods=['POST', 'OPTIONS'])
+def search():
+    if request.method == 'OPTIONS':
+        # 处理预检请求
+        response_headers = {
+            'Access-Control-Allow-Origin': '*',  # 允许所有来源的请求
+            'Access-Control-Allow-Methods': 'POST',  # 允许的方法
+            'Access-Control-Allow-Headers': 'Content-Type',  # 允许的头部信息
+        }
+        return '', 200, response_headers
+
+    query = request.json.get('query')
+    script_path = 'test.py'  # Python 脚本的路径
+    python_path = '/Users/cx/opt/anaconda3/bin/python'  # Python 解释器的路径
+
+    cmd = [python_path, script_path, query]  # 构建执行脚本的命令
+
+    try:
+        result = subprocess.check_output(cmd)  # 执行命令并获取输出结果
+        result = result.decode('utf-8')  # 将字节流转换为字符串
+        return jsonify(result=result)
+    except subprocess.CalledProcessError as e:
+        return jsonify(error=str(e))
+    
+
+    # 返回搜索结果作为 JSON 响应
+    # return jsonify(query)
 
 # 监听数据集获取端口
 @app.route('/api/getDataList', methods=['GET'])
