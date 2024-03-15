@@ -5,6 +5,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import subprocess
 import mysql.connector
+from oneie.predict_text import predict
 # 创建Flask实例
 app = Flask(__name__)
 # 解决跨域
@@ -80,9 +81,10 @@ def get_data_list():
 
 @app.route('/api/sendEvent',methods=['POST'])
 def textEEPredict():
-  print(request.json)
-  print('loading model')
-  return jsonify({'code': 200, 'message': '222'})
+  text=request.json['text']
+  language=request.json["language"]
+  res=predict(language,text)
+  return jsonify({'code': 200, 'result':res})
   
 if __name__ == '__main__':
   # 启动服务 默认开在5000端口
