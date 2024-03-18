@@ -1,6 +1,13 @@
 # PublicOpinion_Flask
 舆情项目flask后端接口
 
+服务器的root密码为`ecust2024`
+
+服务器下root用户下有一个`opinion`环境，使用该环境作为后端环境。可使用`conda activate opinion`切换，当前需要先切换到root用户下才行。
+
+248服务器可能有本科生在跑程序，尽量不要去中断他们。
+
+
 ## 安装依赖
 ```
 pip install flask // Version: 3.0.0
@@ -42,3 +49,8 @@ transformers==4.12.1 //示例
 
 ```
 **再添加自己模块的时候，尽量创建一个属于自己的目录，便于后期自己的管理**
+
+
+
+## 句子
+
