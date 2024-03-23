@@ -13,8 +13,8 @@ import shutil
 sys.stdout = io.TextIOWrapper(sys.stdout.detach(),encoding='utf-8')
 
 # 加载Taiyi 中文 text encoder
-text_tokenizer = BertTokenizer.from_pretrained("model/Taiyi-CLIP-RoBERTa-102M-ViT-L-Chinese")
-text_encoder = BertModel.from_pretrained("model/Taiyi-CLIP-RoBERTa-102M-ViT-L-Chinese").eval()
+text_tokenizer = BertTokenizer.from_pretrained("/media/dell/ChenXue/model/Taiyi-CLIP-RoBERTa-102M-ViT-L-Chinese")
+text_encoder = BertModel.from_pretrained("/media/dell/ChenXue/model/Taiyi-CLIP-RoBERTa-102M-ViT-L-Chinese").eval()
 
 # 加载openclip的image encoder
 clip_model, _, processor = open_clip.create_model_and_transforms('ViT-L-14', pretrained='openai')

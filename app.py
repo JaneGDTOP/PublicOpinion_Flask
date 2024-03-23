@@ -42,7 +42,7 @@ def search():
 
     query = request.json.get('query')
     script_path = 'test.py'  # Python 脚本的路径
-    python_path = '/Users/cx/opt/anaconda3/bin/python'  # Python 解释器的路径
+    python_path = '/root/anaconda3/envs/opinion/bin/python'  # Python 解释器的路径
 
     cmd = [python_path, script_path, query]  # 构建执行脚本的命令
 
